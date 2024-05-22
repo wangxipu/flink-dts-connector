@@ -409,7 +409,8 @@ public class DtsKafkaFetcher <T> {
                             kafkaTopicPartition.getTopic()
                                     + '-'
                                     + kafkaTopicPartition.getPartition();
-                    watermarkOutputMultiplexer.registerNewOutput(partitionId);
+                    WatermarkOutputMultiplexer.WatermarkUpdateListener watermarkUpdateListener = l -> {};
+                    watermarkOutputMultiplexer.registerNewOutput(partitionId, watermarkUpdateListener);
                     WatermarkOutput immediateOutput =
                             watermarkOutputMultiplexer.getImmediateOutput(partitionId);
                     WatermarkOutput deferredOutput =
